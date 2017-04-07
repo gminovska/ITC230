@@ -16,7 +16,7 @@ http.createServer(function(request,response) {
         serveStaticPage(response,'/public/about.html');
         break;
         default:
-        serveStaticPage(response,'/public/404.html');
+        serveStaticPage(response,'/public/404.html', 404);
         break;
     }  
 }).listen(3000);
