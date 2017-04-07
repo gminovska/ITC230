@@ -1,0 +1,27 @@
+{
+  "name": "itc230",
+  "version": "1.0.0",
+  "description": "an app that lists all the resources(books, courses, tutorials, blogs etc.) i have used in my web development study ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gminovska/ITC230.git"
+  },
+  "keywords": [
+    "node",
+    "javascript",
+    "express",
+    "mongodb",
+    "itc230",
+    "seattlecentral"
+  ],
+  "author": "gordana minovska",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gminovska/ITC230/issues"
+  },
+  "homepage": "https://github.com/gminovska/ITC230#readme"
+}
