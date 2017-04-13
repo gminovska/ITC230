@@ -19,12 +19,20 @@ http.createServer(function(request,response) {
     var resource = qs.parse(querystring);
     // console.log(resource);
     switch(path) {
+        //HW2: let's get modular cases
         case '/get':
             // response.writeHead(200, {'ContentType':'{text/plain}'});
             // response.end(``);
             response.end(`Searching for "${resource.name}"<br>
             Result: ${JSON.stringify(resources.getResource(resource.name))}`);
+        break;
+        case '/delete':
+            var deleteItem = resources.deleteResource(resource.name);
+            response.end(`${deleteItem.message}<br>
+            There are ${deleteItem.remaining} items remaining`);
             break;
+            
+        //HW1: Up and running cases
         case '':
         serveStaticPage(response, '/public/home.html');
         break;
@@ -35,7 +43,7 @@ http.createServer(function(request,response) {
         serveStaticPage(response,'/public/404.html', 404);
         break;
     }  
-}).listen(3000);
+}).listen(process.env.PORT || 3000);
 
 //Node has to read the file before sending it to the browser
 function serveStaticPage(response, path, statusCode = 200, contentType = 'text/html') {
