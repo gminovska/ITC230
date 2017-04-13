@@ -17,12 +17,10 @@ http.createServer(function(request,response) {
     console.log(path);
    var querystring = request.url.split("?")[1];
     var resource = qs.parse(querystring);
-    // console.log(resource);
+    console.log(resource);
     switch(path) {
         //HW2: let's get modular cases
         case '/get':
-            // response.writeHead(200, {'ContentType':'{text/plain}'});
-            // response.end(``);
             response.end(`Searching for "${resource.name}"<br>
             Result: ${JSON.stringify(resources.getResource(resource.name))}`);
         break;
@@ -31,7 +29,14 @@ http.createServer(function(request,response) {
             response.end(`${deleteItem.message}<br>
             There are ${deleteItem.remaining} items remaining`);
             break;
-            
+        case '/add':
+            var myResources = resources.addResource(resource);
+            response.end(`Resource added.<br>Current collection:${JSON.stringify(myResources)}`);
+        break;
+        case '/list':
+        var allResources = resources.listResources();
+        response.end(JSON.stringify(resources.listResources()));
+        break;
         //HW1: Up and running cases
         case '':
         serveStaticPage(response, '/public/home.html');

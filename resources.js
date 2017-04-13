@@ -33,9 +33,20 @@ function deleteResource(name, resources = myResources) {
     return {message:message, remaining: myResources.length};
 }
 
+function addResource(resource, resources = myResources) {
+    resources.push(resource); 
+    return resources;
+}
+
+function listResources(resources = myResources) {
+    return resources;
+}
+
 //ES6 shorthand syntax that works if the right and the left side are equal. 
 //(ex. getResource: getResource)
 module.exports = {
     getResource,
-    deleteResource
+    deleteResource,
+    addResource,
+    listResources
 }
