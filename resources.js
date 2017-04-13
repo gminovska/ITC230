@@ -17,7 +17,7 @@ var myResources = [
 ];
 
 function getResource(name, resources = myResources) {
-    return resources.find((item) => item.name == name);    
+    return resources.find((item) => item.name.toLowerCase() == name.toLowerCase());    
 }
 
 module.exports = {
