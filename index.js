@@ -21,17 +21,17 @@ http.createServer(function(request,response) {
     switch(path) {
         //HW2: let's get modular cases
         case '/get':
-            response.end(`Searching for "${resource.name}"<br>
-            Result: ${JSON.stringify(resources.getResource(resource.name))}`);
+            response.end(`<h3>Searching for "${resource.name}"</h3>
+            <p>Result: ${JSON.stringify(resources.getResource(resource.name))}</p>`);
         break;
         case '/delete':
             var deleteItem = resources.deleteResource(resource.name);
-            response.end(`${deleteItem.message}<br>
-            There are ${deleteItem.remaining} items remaining`);
+            response.end(`<h3>${deleteItem.message}</h3>
+            <p>There are ${deleteItem.remaining} items remaining</p>`);
             break;
         case '/add':
             var myResources = resources.addResource(resource);
-            response.end(`Resource added.<br>Current collection:${JSON.stringify(myResources)}`);
+            response.end(`<h3>Resource added.</h3><p>Current collection:${JSON.stringify(myResources)}</p>`);
         break;
         case '/list':
         var allResources = resources.listResources();
