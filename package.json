@@ -16,12 +16,17 @@
     "express",
     "mongodb",
     "itc230",
-    "seattlecentral"
+    "seattle central college"
   ],
   "author": "gordana minovska",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/gminovska/ITC230/issues"
   },
-  "homepage": "https://github.com/gminovska/ITC230#readme"
+  "homepage": "https://github.com/gminovska/ITC230#readme",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "express-handlebars": "^3.0.0"
+  }
 }
