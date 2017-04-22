@@ -1,4 +1,3 @@
-
 const resources = require('./resources.js');
 //import Express dependency
 const express = require('express');
@@ -7,38 +6,44 @@ const app = express();
 /*From Express documentation: req.body contains key-value pairs of data submitted in the request body. By default, it is undefined, and is populated when you use body-parsing middleware such as body-parser and multer.*/
 
 //mount the body-parser middleware function
-app.use(require('body-parser').urlencoded({extended:true}));
+app.use(require('body-parser').urlencoded({
+    extended: true
+}));
 
 //Require templating engine handlebars. The default file extension is changed to .html
-const handlebars =  require("express-handlebars");
-app.engine(".html", handlebars({extname: '.html'}));
+const handlebars = require("express-handlebars");
+app.engine(".html", handlebars({
+    extname: '.html'
+}));
 app.set("view engine", ".html");
 
-
-//Routing the Express way
-app.get('/', function(req, res) {
+//Routing the Express (high)way
+app.get('/', function (req, res) {
     res.sendFile(`${__dirname}/public/home.html`);
 });
-app.get('/about', function(req, res) {
+app.get('/about', function (req, res) {
     res.sendFile(`${__dirname}/public/about.html`);
 });
-app.post('/get', function(req,res){
-
+app.post('/get', function (req, res) {
     const name = req.body.name;
     let result = resources.getResource(name);
-    res.render('result', {name, result});
-
+    res.render('result', {
+        name,
+        result
+    });
 });
-app.post('/delete', function(req, res){
+app.post('/delete', function (req, res) {
     const name = req.body.name;
     let result = resources.deleteResource(name);
-    res.render('delete', {result});
-    console.log = result;
+    res.render('delete', {
+        result
+    });
 });
 //default(catch all) route
-app.get('*', function(req, res) {
+app.get('*', function (req, res) {
     res.sendFile(`${__dirname}/public/404.html`);
 });
+
 app.listen(process.env.PORT || 3000);
 
 // /*This file creates a server that serves 
