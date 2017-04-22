@@ -20,13 +20,18 @@ app.get('/', function(req, res) {
     res.sendFile(`${__dirname}/public/home.html`);
 });
 app.post('/get', function(req,res){
+
     const name = req.body.name;
     let result = resources.getResource(name);
-    // if(!result)
     res.render('result', {name, result});
-  console.log(result); // display parsed form submission
-})
 
+});
+app.post('/delete', function(req, res){
+    const name = req.body.name;
+    let result = resources.deleteResource(name);
+    res.render('delete', {result});
+    console.log = result;
+});
 app.listen(process.env.PORT || 3000);
 
 // /*This file creates a server that serves 
