@@ -19,6 +19,9 @@ app.set("view engine", ".html");
 app.get('/', function(req, res) {
     res.sendFile(`${__dirname}/public/home.html`);
 });
+app.get('/about', function(req, res) {
+    res.sendFile(`${__dirname}/public/about.html`);
+});
 app.post('/get', function(req,res){
 
     const name = req.body.name;
@@ -31,6 +34,10 @@ app.post('/delete', function(req, res){
     let result = resources.deleteResource(name);
     res.render('delete', {result});
     console.log = result;
+});
+//default(catch all) route
+app.get('*', function(req, res) {
+    res.sendFile(`${__dirname}/public/404.html`);
 });
 app.listen(process.env.PORT || 3000);
 
