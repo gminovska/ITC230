@@ -18,9 +18,6 @@ var myResources = [
 
 function getResource(name, resources = myResources) {
     var result = resources.find((item) => item.name.toLowerCase() == name.toLowerCase()); 
-    if(!result) {
-        return "Not found";
-    }
     return result;  
 }
 
