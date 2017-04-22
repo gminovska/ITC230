@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+    <head>      
+        <title>Resource search result</title>    
+    </head>
+    <body>
+        <h1>Searching for "{{name}}"</h1>
+        {{#if result}}
+    <li>Name: {{ result.name }}
+    <li>Type: {{ result.type }}
+    <li>Author: {{ result.author }}
+  {{else}}
+    <p>Sorry, we couldn't find the resource you were looking for</p>
+  {{/if}}
+    </body>
+</html>
