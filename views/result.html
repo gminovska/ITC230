@@ -15,9 +15,14 @@
             <input type="hidden" name="name" value="{{ result.name }}">
             <input type="submit" value="Delete">
         </form>
-        
+        <!--or window.history.back (it is like clicking the back button-->
+        <input type="submit" onclick="window.location.href = '/'" value="Go Back">
   {{else}}
     <p>Sorry, we couldn't find the resource you were looking for</p>
+    <!--normally, we would not send a request to the server to go back, since there are ways of doing that on the client side, in the browser (as it is done if the resourse is found). I am sending a request here to practice routing in Express-->
+    <form action="/" method="GET">
+        <input type="submit"  value="Go Back">
+    </form>
   {{/if}}
     </body>
 </html>
