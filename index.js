@@ -39,6 +39,16 @@ app.post('/delete', function (req, res) {
         result
     });
 });
+app.get('/add', function(req, res) {
+    res.render('add');
+});
+app.post('/add', function(req, res) {
+    resources.addResource(req.body);
+    var allResources = resources.listResources();
+    res.render('list', {allResources});
+    console.log(resources.listResources());
+    
+});
 //default(catch all) route
 app.get('*', function (req, res) {
     res.sendFile(`${__dirname}/public/404.html`);
