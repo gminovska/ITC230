@@ -1,0 +1,9 @@
+<h1>Your resource was added</h1>
+<p>Current resources:</p>
+<div>
+<ul>
+{{#each allResources}}
+<li><strong>{{this.name}}</strong> - {{this.type}} by {{this.author}}</li>
+{{/each}}    
+</ul>
+</div>
