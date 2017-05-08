@@ -1,19 +1,43 @@
 var myResources = [
     {
         name: "Web Developer Bootcamp",
+        image: "https://udemy-images.udemy.com/course/750x422/625204_436a_2.jpg",
         type: "Course",
         author: "Colt Steele"
     },
     {
         name: "You Don't Know JS",
+        image: "https://images-na.ssl-images-amazon.com/images/G/01/aplusautomation/vendorimages/e951f3b0-aea8-4bb2-9a14-0fb220ac5bc2.png._CB325458148_.png",
         type: "Book",
         author: "Kyle Simpson"
     },
     {
         name: "Git Essential Training",
+        image: "http://websnacks.net/wp-content/uploads/2015/05/Git.png",
         type: "Course",
+        platform: "Lynda",
         author: "Kevin Skoglund"
+    },
+    {
+        name: "Learning Full-Stack JS Development: MERN",
+        image: 'https://pbs.twimg.com/media/CX5MTGGWEAARQ0m.jpg',
+        type: "Course",
+        platform: "Lynda",
+        author: 'Samer Buna'
+    },
+    {
+        name: "Eloquent JavaScript",
+        image: "http://eloquentjavascript.net/img/cover.png",
+        type: "Book",
+        author: "Marijn Haverbeke"
+    },
+    {
+        name: 'JavaScript30',
+        image:'http://www.globalnerdy.com/wordpress/wp-content/uploads/2016/12/javascript30.jpg',
+        type: 'Tutorial',
+        author: 'Wes Bos'
     }
+    
 ];
 
 function getResource(name, resources = myResources) {
