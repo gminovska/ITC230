@@ -66,13 +66,14 @@ app.get('/add', function (req, res) {
     res.render('add');
 });
 app.post('/add', function (req, res) {
-    resources.addResource(req.body);
-    var allResources = resources.listResources();
-    res.render('list', {
-        allResources
-    });
-    console.log(resources.listResources());
 
+    Resource.create(req.body.resource, (err, result)=>{
+        if(err){
+            console.log(err);
+        } else {
+            res.redirect('/');
+        }
+    });
 });
 //default(catch all) route
 app.get('*', function (req, res) {
