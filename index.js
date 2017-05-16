@@ -1,9 +1,10 @@
-const resources = require('./resources.js');
-//import Express dependency
+const Resource = require('./models/resource');
 const express = require('express');
 const app = express();
 
-/*From Express documentation: req.body contains key-value pairs of data submitted in the request body. By default, it is undefined, and is populated when you use body-parsing middleware such as body-parser and multer.*/
+// Un-comment the lines below to populate the database with resources
+// const populateDatabase = require('./data');
+// populateDatabase();
 
 //mount the body-parser middleware function
 app.use(require('body-parser').urlencoded({
