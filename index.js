@@ -57,10 +57,12 @@ app.post('/resource', function (req, res) {
     });
 });
 app.post('/delete', function (req, res) {
-    const name = req.body.name;
-    let result = resources.deleteResource(name);
-    res.render('delete', {
-        result
+    Resource.findByIdAndRemove(req.body.resourceID, (err, result)=>{
+        if(err){
+            console.log(err);
+        } else {
+            res.redirect('/');
+        }
     });
 });
 app.get('/add', function (req, res) {

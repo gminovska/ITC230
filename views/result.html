@@ -12,7 +12,7 @@
                     <p><b>Description:</b> {{ resource.description }}</p>
 
                 <form class="text-center" method="POST" action="/delete">
-            <input type="hidden" name="name" value="{{ resource.name }}">
+            <input type="hidden" name="resourceID" value="{{ resource._id }}">
             <input class="btn btn-lg btn-danger" type="submit" value="Delete">
         </form>
             </div>
