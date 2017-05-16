@@ -37,12 +37,14 @@ app.get('/about', function (req, res) {
     res.render('about');
 });
 
-app.get('/get', function(req, res){
-    const name = req.query.name;
-    let result = resources.getResource(name);
-    res.render('result', {
-        name,
-        result
+app.get('/resource/:id', function(req, res){
+
+    Resource.findById(req.params.id, (err, data)=>{
+        if(err){
+            console.log(err);
+        } else {
+            res.render('result', {resource: data});
+        }
     });
 });
 app.post('/get', function (req, res) {

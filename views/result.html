@@ -1,17 +1,18 @@
 <body>
     <div class="container">
         <div class="row">
-            <h1 class="text-center">Searching for "{{name}}"</h1>
-            {{#if result}}
+            <h1 class="text-center">Searching for "{{resource.name}}"</h1>
+            {{#if resource}}
             <div class="col col-lg-4 col-lg-offset-4 well">
-                    <img class="resource_image" src="{{result.image}}" alt="">
+                    <img class="resource_image" src="{{resource.image}}" alt="">
                     
-                    <p><b>Name:</b> {{ result.name }}</p>
-                    <p><b>Type:</b> {{ result.type }}</p>
-                    <p><b>Author:</b> {{ result.author }}</p>
+                    <p><b>Name:</b> {{ resource.name }}</p>
+                    <p><b>Type:</b> {{ resource.type }}</p>
+                    <p><b>Author:</b> {{ resource.author }}</p>
+                    <p><b>Description:</b> {{ resource.description }}</p>
 
                 <form class="text-center" method="POST" action="/delete">
-            <input type="hidden" name="name" value="{{ result.name }}">
+            <input type="hidden" name="name" value="{{ resource.name }}">
             <input class="btn btn-lg btn-danger" type="submit" value="Delete">
         </form>
             </div>

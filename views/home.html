@@ -30,7 +30,7 @@
         <div class="resource_row">
             {{#each resources}} {{! display all the resources}}
             <div class="item well">
-                <a href="/get/?name={{name}}">
+                <a href="/resource/{{ _id }}">
                     <h3>{{name}}</h3>
                     <img class="resource_image" src="{{ image }}" alt="Resource image">
                 </a>
