@@ -47,12 +47,13 @@ app.get('/resource/:id', function(req, res){
         }
     });
 });
-app.post('/get', function (req, res) {
-    const name = req.body.name;
-    let result = resources.getResource(name);
-    res.render('result', {
-        name,
-        result
+app.post('/resource', function (req, res) {
+    Resource.findOne({name:req.body.name}, (err, data)=>{
+        if(err){
+            console.log(err);
+        } else {
+            res.render('result', {name: req.body.name, resource: data});
+        }
     });
 });
 app.post('/delete', function (req, res) {

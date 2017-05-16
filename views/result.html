@@ -1,8 +1,8 @@
 <body>
     <div class="container">
         <div class="row">
-            <h1 class="text-center">Searching for "{{resource.name}}"</h1>
             {{#if resource}}
+            <h1 class="text-center">Searching for "{{resource.name}}"</h1>
             <div class="col col-lg-4 col-lg-offset-4 well">
                     <img class="resource_image" src="{{resource.image}}" alt="">
                     
@@ -20,6 +20,7 @@
         </div> <!--end row-->
 
         {{else}}
+        <h1 class="text-center">Searching for "{{name}}"</h1>
         <div class="col col-lg-4 col-lg-offset-4 well">
         <p>Sorry, we couldn't find the resource you were looking for</p>
         <form class="text-center" action="/" method="GET">
