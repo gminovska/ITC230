@@ -4,7 +4,9 @@
   "description": "an app that lists all the resources(books, courses, tutorials, blogs etc.) i have used in my web development study ",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "start": "nodemon index.js",
+    "test": "mocha",
+    "db": "mongod --dbpath C:/data/db"
   },
   "repository": {
     "type": "git",
@@ -36,6 +38,7 @@
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-node": "^4.2.2",
     "eslint-plugin-react": "^6.10.3",
-    "mocha": "^3.3.0"
+    "mocha": "^3.3.0",
+    "nodemon": "^1.11.0"
   }
 }
