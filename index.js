@@ -20,11 +20,18 @@ const handlebars = require("express-handlebars")
 app.engine("html", handlebars.engine);
 app.set("view engine", ".html");
 
-//Routing the Express (high)way
+//=====================
+//   ROUTES
+//=====================
 app.get('/', function (req, res) {
-    var allResources = resources.listResources;
-    res.render('home',{resources: allResources});
-    // res.sendFile(`${__dirname}/public/home.html`);
+    var allResources = Resource.find({}, (err, data)=>{
+        if(err) {
+            console.log(err);
+        } else {
+            res.render('home',{resources: data});
+        }
+    });
+
 });
 app.get('/about', function (req, res) {
     res.render('about');
