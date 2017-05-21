@@ -64,9 +64,9 @@ app.get('/api/resources', (req, res) => {
 });
 
 //delete an item
-app.delete('/api/resource/:id', (req, res)=> {
-    Resource.findByIdAndRemove(req.params.id, (err, result)=>{
-        if(err) {
+app.delete('/api/resource/:id', (req, res) => {
+    Resource.findByIdAndRemove(req.params.id, (err, result) => {
+        if (err) {
             res.status(500).send("There was an error");
         } else {
             res.status(200).send("The resource was succesfully removed");
@@ -76,7 +76,7 @@ app.delete('/api/resource/:id', (req, res)=> {
 
 //add an item
 //test the API with Postman, select x-www-form-urlencoded in the body
-app.post('/api/resource/', (req, res)=> {
+app.post('/api/resource/', (req, res) => {
     var newResource = {
         name: req.body.name,
         image: req.body.image,
@@ -84,9 +84,9 @@ app.post('/api/resource/', (req, res)=> {
         type: req.body.type,
         description: req.body.description
     };
-   
-    Resource.create(newResource, (err, result)=>{
-        if(err){
+
+    Resource.create(newResource, (err, result) => {
+        if (err) {
             res.status(500).send("There was an error adding a resource");
         } else {
             res.send("Resource successfully added");
@@ -96,55 +96,64 @@ app.post('/api/resource/', (req, res)=> {
 //=====================
 //   ROUTES
 //=====================
-app.get('/', function (req, res) {
-    var allResources = Resource.find({}, (err, data)=>{
-        if(err) {
+app.get('/', function(req, res) {
+    var allResources = Resource.find({}, (err, data) => {
+        if (err) {
             console.log(err);
         } else {
-            res.render('home',{resources: data});
+            res.render('home', {
+                resources: data
+            });
         }
     });
 
 });
-app.get('/about', function (req, res) {
+app.get('/about', function(req, res) {
     res.render('about');
 });
 
-app.get('/resource/:id', function(req, res){
+app.get('/resource/:id', function(req, res) {
 
-    Resource.findById(req.params.id, (err, data)=>{
-        if(err){
+    Resource.findById(req.params.id, (err, data) => {
+        if (err) {
             console.log(err);
         } else {
-            res.render('result', {resource: data});
+            res.render('result', {
+                resource: data
+            });
         }
     });
 });
-app.post('/resource', function (req, res) {
-    Resource.findOne({name:req.body.name}, (err, data)=>{
-        if(err){
+app.post('/resource', function(req, res) {
+    Resource.findOne({
+        name: req.body.name
+    }, (err, data) => {
+        if (err) {
             console.log(err);
         } else {
-            res.render('result', {name: req.body.name, resource: data});
+            res.render('result', {
+                name: req.body.name,
+                resource: data
+            });
         }
     });
 });
-app.post('/delete', function (req, res) {
-    Resource.findByIdAndRemove(req.body.resourceID, (err, result)=>{
-        if(err){
+app.post('/delete', function(req, res) {
+    Resource.findByIdAndRemove(req.body.resourceID, (err, result) => {
+        if (err) {
             console.log(err);
         } else {
             res.redirect('/');
         }
     });
 });
-app.get('/add', function (req, res) {
+app.get('/add', function(req, res) {
     res.render('add');
 });
-app.post('/add', function (req, res) {
+app.post('/add', function(req, res) {
 
-    Resource.create(req.body.resource, (err, result)=>{
-        if(err){
+    Resource.create(req.body.resource, (err, result) => {
+        if (err) {
             console.log(err);
         } else {
             res.redirect('/');
@@ -152,10 +161,10 @@ app.post('/add', function (req, res) {
     });
 });
 //default(catch all) route
-app.get('*', function (req, res) {
+app.get('*', function(req, res) {
     res.sendFile(`${__dirname}/public/404.html`);
 });
 
-app.listen(process.env.PORT || 3000, function () {
+app.listen(process.env.PORT || 3000, function() {
     console.log("Server is up and running");
 });
