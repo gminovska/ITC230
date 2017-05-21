@@ -75,6 +75,25 @@ app.delete('/api/resource/:id', (req, res)=> {
 });
 
 //add an item
+//test the API with Postman, select x-www-form-urlencoded in the body
+app.post('/api/resource/', (req, res)=> {
+    var newResource = {
+        name: req.body.name,
+        image: req.body.image,
+        author: req.body.author,
+        type: req.body.type,
+        description: req.body.description
+    };
+   
+    Resource.create(newResource, (err, result)=>{
+        if(err){
+            res.status(500).send("There was an error adding a resource");
+        } else {
+            res.send("Resource successfully added");
+        }
+    });
+});
+//=====================
 //   ROUTES
 //=====================
 app.get('/', function (req, res) {
