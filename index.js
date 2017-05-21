@@ -34,6 +34,7 @@ app.get('/api/resources/:id', (req, res) => {
         } else {
             console.log(resource);
             res.json({
+                id: resource._id,
                 name: resource.name,
                 author: resource.author,
                 image: resource.image,
@@ -50,6 +51,7 @@ app.get('/api/resources', (req, res) => {
         } else {
             res.json(resources.map((resource) => {
                 return {
+                    id: resource._id,
                     name: resource.name,
                     author: resource.author,
                     image: resource.image,
