@@ -43,6 +43,24 @@ app.get('/api/resources/:id', (req, res) => {
     });
 });
 //get all items
+app.get('/api/resources', (req, res) => {
+    Resource.find({}, (err, resources) => {
+        if (err) {
+            res.status(500).send("There was an error retrieving resources from the database");
+        } else {
+            res.json(resources.map((resource) => {
+                return {
+                    name: resource.name,
+                    author: resource.author,
+                    image: resource.image,
+                    description: resource.description
+                };
+
+            }));
+        }
+    });
+});
+
 //   ROUTES
 //=====================
 app.get('/', function (req, res) {
