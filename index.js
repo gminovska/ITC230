@@ -22,6 +22,27 @@ app.set("view engine", ".html");
 //Enable cross-origin resource sharing (CORS) for the api route
 app.use('/api', require('cors')());
 //=====================
+//   API ROUTES
+//=====================
+//get a single item
+app.get('/api/resources/:id', (req, res) => {
+    Resource.findById(req.params.id, (err, resource) => {
+        if (err) {
+            console.log("Logging out the error: ", err);
+            res.status(500).send("Not found");
+
+        } else {
+            console.log(resource);
+            res.json({
+                name: resource.name,
+                author: resource.author,
+                image: resource.image,
+                description: resource.description
+            });
+        }
+    });
+});
+//get all items
 //   ROUTES
 //=====================
 app.get('/', function (req, res) {
