@@ -63,6 +63,18 @@ app.get('/api/resources', (req, res) => {
     });
 });
 
+//delete an item
+app.delete('/api/resource/:id', (req, res)=> {
+    Resource.findByIdAndRemove(req.params.id, (err, result)=>{
+        if(err) {
+            res.status(500).send("There was an error");
+        } else {
+            res.status(200).send("The resource was succesfully removed");
+        }
+    });
+});
+
+//add an item
 //   ROUTES
 //=====================
 app.get('/', function (req, res) {
