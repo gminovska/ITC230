@@ -19,7 +19,8 @@ const handlebars = require("express-handlebars")
     });
 app.engine("html", handlebars.engine);
 app.set("view engine", ".html");
-
+//Enable cross-origin resource sharing (CORS) for the api route
+app.use('/api', require('cors')());
 //=====================
 //   ROUTES
 //=====================
