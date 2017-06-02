@@ -96,6 +96,10 @@ app.post('/api/resource/', (req, res) => {
 //=====================
 //   ROUTES
 //=====================
+app.get('/react', (req, res)=>{
+    res.render('index');
+});
+
 app.get('/', function(req, res) {
     var allResources = Resource.find({}, (err, data) => {
         if (err) {

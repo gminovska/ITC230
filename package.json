@@ -6,7 +6,8 @@
   "scripts": {
     "start": "nodemon index.js",
     "test": "mocha",
-    "db": "mongod --dbpath C:/data/db"
+    "db": "mongod --dbpath C:/data/db",
+    "dev": "webpack -wd"
   },
   "repository": {
     "type": "git",
@@ -27,11 +28,18 @@
   },
   "homepage": "https://github.com/gminovska/ITC230#readme",
   "dependencies": {
+    "babel-core": "^6.24.1",
+    "babel-loader": "^7.0.0",
+    "babel-preset-env": "^1.5.1",
+    "babel-preset-react": "^6.24.1",
     "body-parser": "^1.17.1",
     "cors": "^2.8.3",
     "express": "^4.15.2",
     "express-handlebars": "^3.0.0",
-    "mongoose": "^4.9.9"
+    "mongoose": "^4.9.9",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
+    "webpack": "^2.6.1"
   },
   "devDependencies": {
     "chai": "^3.5.0",
@@ -41,5 +49,8 @@
     "eslint-plugin-react": "^6.10.3",
     "mocha": "^3.3.0",
     "nodemon": "^1.11.0"
+  },
+  "babel": {
+    "presets": ["env", "react"]
   }
 }
