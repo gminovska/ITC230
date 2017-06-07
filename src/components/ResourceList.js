@@ -1,11 +1,15 @@
 //this component should display a list of resources that are in the database.
 import React from 'react';
 
-const ResourceList = ({resources}) => {
+const ResourceList = (props) => {
+    // const itemSelected = (id) => { onResourceSelect(id) };
+    function itemSelected(resource) {
+        props.onResourceSelect(resource);
+    }
     return (
         <div className="resource_row">
-            {resources.map((resource)=>
-                <div className="item well" key={resource.id}>
+            {props.resources.map((resource)=>
+                <div onClick={() => { itemSelected(resource);}} className="item well" key={resource.id}>
                     <h3>{resource.name}</h3>
                     <img className="resource_image" src={ resource.image } alt="Resource image" />
                 </div>

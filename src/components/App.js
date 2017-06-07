@@ -31,6 +31,7 @@ class App extends Component {
             //pass the data from the App props to the Resource List Component
             <div className="container">
             <Jumbotron onInputChange={(text)=>{this.setState({filterText: text.toLowerCase()});}}/>
+            <ResourceList onResourceSelect={this.resourceSelected.bind(this)} resources={this.state.resources.filter((resource)=> this.state.filterText === '' || resource.name.toLowerCase().includes(this.state.filterText) || resource.author.toLowerCase().includes(this.state.filterText))}/> 
             </div> 
         );
     }
