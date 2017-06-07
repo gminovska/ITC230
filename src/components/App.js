@@ -1,3 +1,4 @@
+//TODO refactor the resourceList prop
 import React, { Component } from 'react';
 
 //make an ajax call to get the data
@@ -25,16 +26,32 @@ class App extends Component {
         .then((response) => { this.setState({resources: response.data});})
         .catch(e => {console.log(e);})
     }
-    
+
     resourceSelected(resource) {
         this.setState({selectedResource: resource});
     }
-    
+
+    removeResource(id) {
+        axios
+        .delete(`/api/resource/${id}`)
+        .then(response => {
+            this.setState({
+                resources: response.data,
+                selectedResource: null
+            })
+        })
+        .catch(e => {console.log(e);})
+        /*this.setState({
+            resources: this.state.resources.filter((resource)=>resource.id !== id),
+            selectedResource: null
+        })*/
+    }
+
     render() {
         return (
             //pass the data from the App props to the Resource List Component
             <div className="container">
-            <Jumbotron onInputChange={(text)=>{this.setState({filterText: text.toLowerCase()});}}/>
+            <Jumbotron onInputChange={(text)=>{this.setState({filterText: text.toLowerCase()});}}/>       
             <ResourceDetail resource={this.state.selectedResource} deleteResource={(id)=> this.removeResource(id)} />
             <ResourceList onResourceSelect={this.resourceSelected.bind(this)} resources={this.state.resources.filter((resource)=> this.state.filterText === '' || resource.name.toLowerCase().includes(this.state.filterText) || resource.author.toLowerCase().includes(this.state.filterText))}/> 
             </div> 
