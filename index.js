@@ -55,6 +55,7 @@ app.get('/api/resources', (req, res) => {
                     name: resource.name,
                     author: resource.author,
                     image: resource.image,
+                    type: resource.type,
                     description: resource.description
                 };
 
