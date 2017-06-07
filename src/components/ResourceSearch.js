@@ -1,14 +1,12 @@
-import React, { Component } from 'react';
-//TODO:
-class ResourceSearch extends Component {
-    
-    render() {
-        return (
-            <div>
-                <input type="text" value=''/>
-            </div>
-        );
-    }
-}
+import React from 'react';
+
+const ResourceSearch = (props) => {
+    const searchTerm = (event) => {props.onSearch(event.target.value);}
+    return (
+        <div>
+            <input type="text" onChange={searchTerm}/>
+        </div>
+    );
+};
 
 export default ResourceSearch;

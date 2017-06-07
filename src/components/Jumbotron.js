@@ -7,7 +7,7 @@ class Jumbtron extends Component {
         return (
             <div className="jumbotron">
             <h1>Resources Cataloque</h1>
-            <ResourceSearch />
+            <ResourceSearch onSearch={this.props.onInputChange}/>
         </div>
         );
     }
