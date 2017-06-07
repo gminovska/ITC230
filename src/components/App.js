@@ -32,16 +32,22 @@ class App extends Component {
     }
 
     removeResource(id) {
+        var confirmed = window.confirm("Are you sure you want to delete the resource?");
+        if(confirmed){
         axios
         .delete(`/api/resource/${id}`)
-        .then(response => {
-            this.setState({
-                resources: response.data,
+        .then((response)=>{
+            this.setState((prevState)=>({
+                resources: prevState.resources.filter((resource)=>resource.id !== response.data),
                 selectedResource: null
-            })
+            }));
         })
         .catch(e => {console.log(e);})
-        /*this.setState({
+        }
+        /*
+        How to access previous state correctly: https://facebook.github.io/react/docs/state-and-lifecycle.html
+
+        this.setState({
             resources: this.state.resources.filter((resource)=>resource.id !== id),
             selectedResource: null
         })*/

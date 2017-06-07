@@ -70,26 +70,11 @@ app.delete('/api/resource/:id', (req, res) => {
         if (err) {
             res.status(500).send("There was an error: " + err);
         } else { 
-            Resource.find({}, (err, resources) => {
-        if (err) {
-            res.status(500).send("There was an error retrieving resources from the database");
-        } else {
-            res.json(resources.map((resource) => {
-                return {
-                    id: resource._id,
-                    name: resource.name,
-                    author: resource.author,
-                    image: resource.image,
-                    type: resource.type,
-                    description: resource.description
-                };
-
-            }));
+            res.status(200).send(result._id);
         }
     });
-        }
-    });
-});     
+});//end of route
+  
             
 //add an item
 //test the API with Postman, select x-www-form-urlencoded in the body
