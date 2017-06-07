@@ -68,13 +68,29 @@ app.get('/api/resources', (req, res) => {
 app.delete('/api/resource/:id', (req, res) => {
     Resource.findByIdAndRemove(req.params.id, (err, result) => {
         if (err) {
-            res.status(500).send("There was an error");
+            res.status(500).send("There was an error: " + err);
+        } else { 
+            Resource.find({}, (err, resources) => {
+        if (err) {
+            res.status(500).send("There was an error retrieving resources from the database");
         } else {
-            res.status(200).send("The resource was succesfully removed");
+            res.json(resources.map((resource) => {
+                return {
+                    id: resource._id,
+                    name: resource.name,
+                    author: resource.author,
+                    image: resource.image,
+                    type: resource.type,
+                    description: resource.description
+                };
+
+            }));
         }
     });
-});
-
+        }
+    });
+});     
+            
 //add an item
 //test the API with Postman, select x-www-form-urlencoded in the body
 app.post('/api/resource/', (req, res) => {
