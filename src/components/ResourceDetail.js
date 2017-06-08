@@ -10,8 +10,7 @@ const ResourceDetail = (props) => {
     }
 
     return (             
-        <div className="col col-lg-4 col-lg-offset-4 well">
-            <img className="resource_image" src={props.resource.image} alt="" />
+        <div className="well">
             <p><b>Name:</b> {props.resource.name}</p>
             <p><b>Type:</b> {props.resource.type}</p>
             <p><b>Author:</b> {props.resource.author}</p>
