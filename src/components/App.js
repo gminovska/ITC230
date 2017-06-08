@@ -8,7 +8,7 @@ import axios from 'axios';
 import Jumbotron from './Jumbotron';
 import ResourceList from './ResourceList';
 import ResourceDetail from './ResourceDetail';
-
+import NewResource from './NewResource';
 class App extends Component {
 
     constructor(props){
@@ -17,6 +17,7 @@ class App extends Component {
          resources: []
          , filterText: ''
          , selectedResource: null
+         , newResource: false
      };   
     }
     
@@ -43,23 +44,32 @@ class App extends Component {
             }));
         })
         .catch(e => {console.log(e);})
-        }
-        /*
-        How to access previous state correctly: https://facebook.github.io/react/docs/state-and-lifecycle.html
+        }    
+    } //end of removeResource
 
-        this.setState({
-            resources: this.state.resources.filter((resource)=>resource.id !== id),
-            selectedResource: null
-        })*/
+    saveResource(obj) {
+        this.setState((prevState)=>({
+            resources: [...prevState.resources, obj],
+            newResource: false
+        }));
     }
 
     render() {
         return (
             //pass the data from the App props to the Resource List Component
             <div className="container">
-            <Jumbotron onInputChange={(text)=>{this.setState({filterText: text.toLowerCase()});}}/>       
-            <ResourceDetail resource={this.state.selectedResource} deleteResource={(id)=> this.removeResource(id)} />
-            <ResourceList onResourceSelect={this.resourceSelected.bind(this)} resources={this.state.resources.filter((resource)=> this.state.filterText === '' || resource.name.toLowerCase().includes(this.state.filterText) || resource.author.toLowerCase().includes(this.state.filterText))}/> 
+            <Jumbotron 
+                onInputChange={(text)=>{this.setState({filterText: text.toLowerCase()});}} 
+                onAddClick={()=>{this.setState({newResource: true})}}/>
+            <NewResource 
+                add={this.state.newResource} 
+                onCancel={()=>{this.setState({newResource: false})}}
+                onSave={(newResource)=>this.saveResource(newResource)}/>
+            <ResourceDetail 
+                resource={this.state.selectedResource} 
+                deleteResource={(id)=> this.removeResource(id)} />
+            <ResourceList 
+                onResourceSelect={this.resourceSelected.bind(this)} resources={this.state.resources.filter((resource)=> this.state.filterText === '' || resource.name.toLowerCase().includes(this.state.filterText) || resource.author.toLowerCase().includes(this.state.filterText))}/> 
             </div> 
         );
     }
