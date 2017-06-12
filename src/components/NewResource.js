@@ -3,7 +3,6 @@ import React from 'react';
 const NewResource = (props) => {
     if(props.add){
         const newResource = {
-                id: null,
                 name: '',
                 image: '',
                 type: '',
@@ -11,7 +10,7 @@ const NewResource = (props) => {
                 description: ''
             }
         const addNew = (obj) => {
-            console.log(newResource);
+            // console.log(newResource);
             props.onSave(newResource);
         }
 

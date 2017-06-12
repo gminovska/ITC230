@@ -48,10 +48,16 @@ class App extends Component {
     } //end of removeResource
 
     saveResource(obj) {
-        this.setState((prevState)=>({
-            resources: [...prevState.resources, obj],
-            newResource: false
-        }));
+        console.log("This is from save resource: " + JSON.stringify(obj));
+        axios.post('/api/resource/', obj)
+        .then((response)=>{
+            this.setState((prevState)=>({
+                resources: [...prevState.resources, obj],
+                newResource: false
+            }));
+        })
+        .catch((e)=>console.log(e));
+        
     }
 
     render() {

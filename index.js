@@ -1,15 +1,17 @@
 const Resource = require('./models/resource');
 const express = require('express');
 const app = express();
-
+const bodyParser = require("body-parser");
 // Un-comment the lines below to populate the database with resources
 // const populateDatabase = require('./data');
 // populateDatabase();
 
 //mount the body-parser middleware function
-app.use(require('body-parser').urlencoded({
+app.use(bodyParser.urlencoded({
     extended: true
 }));
+//to be able to get post data from axios
+app.use(bodyParser.json());
 app.use(express.static(__dirname + "/public"));
 //Require templating engine handlebars. The default file extension is changed to .html
 const handlebars = require("express-handlebars")
