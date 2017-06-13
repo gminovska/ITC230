@@ -97,6 +97,18 @@ app.post('/api/resource/', (req, res) => {
         }
     });
 });
+
+//edit item
+app.post('/api/resource/:id', (req, res) => {
+    Resource.findByIdAndUpdate(req.body.id, req.body, (err, result)=>{
+        if(err){
+            console.log(err);
+        } else {
+            res.send("Resource updated!");
+        }
+    })
+}) 
+
 //=====================
 //   ROUTES
 //=====================
