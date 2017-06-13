@@ -9,6 +9,7 @@ import Jumbotron from './Jumbotron';
 import ResourceList from './ResourceList';
 import ResourceDetail from './ResourceDetail';
 import NewResource from './NewResource';
+import EditResource from './EditResource';
 class App extends Component {
 
     constructor(props){
@@ -18,6 +19,7 @@ class App extends Component {
          , filterText: ''
          , selectedResource: null
          , newResource: false
+         , editResource: false
      };   
     }
     
@@ -47,6 +49,14 @@ class App extends Component {
         }    
     } //end of removeResource
 
+    editResource(obj) {
+        axios.post('/api/resource/' + obj.id, obj)
+        .then((response)=>this.setState({
+            editResource: false
+        }))
+        .catch((err)=>console.log(err))
+    }
+
     saveResource(obj) {
         console.log("This is from save resource: " + JSON.stringify(obj));
         axios.post('/api/resource/', obj)
@@ -71,9 +81,16 @@ class App extends Component {
                 add={this.state.newResource} 
                 onCancel={()=>{this.setState({newResource: false})}}
                 onSave={(newResource)=>this.saveResource(newResource)}/>
+            <EditResource
+                edit={this.state.editResource}
+                resource={this.state.selectedResource}
+                onCancel={()=>{this.setState({editResource: false})}}
+                onSave={(res)=>this.editResource(res)} />
             <ResourceDetail 
                 resource={this.state.selectedResource} 
-                deleteResource={(id)=> this.removeResource(id)} />
+                deleteResource={(id)=> this.removeResource(id)}
+                onEditClick={() => {this.setState({editResource: true})}}
+                editResource = {(id) => this.editResource(id)} />
             <ResourceList 
                 onResourceSelect={this.resourceSelected.bind(this)} resources={this.state.resources.filter((resource)=> this.state.filterText === '' || resource.name.toLowerCase().includes(this.state.filterText) || resource.author.toLowerCase().includes(this.state.filterText))}/> 
             </div> 
