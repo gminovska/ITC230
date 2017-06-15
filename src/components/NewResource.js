@@ -1,5 +1,5 @@
 import React from 'react';
-
+import {Modal} from 'react-bootstrap';
 const NewResource = (props) => {
     if(props.add){
         const newResource = {
@@ -17,7 +17,9 @@ const NewResource = (props) => {
         return (
         <div className="row">
             <div className="col-lg-12 text-center">
-                <h1>You know of a good learning resource? Add it below:</h1>
+                <Modal.Header closeButton>
+            <Modal.Title>You know of a good learning resource? Add it below:</Modal.Title>
+          </Modal.Header>
             </div>
             <div className="well col-md-8 col-md-offset-2">
                     <div className="form-group">

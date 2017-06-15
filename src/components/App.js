@@ -1,6 +1,6 @@
 //TODO refactor the resourceList prop
 import React, { Component } from 'react';
-
+import {Modal} from 'react-bootstrap';
 //make an ajax call to get the data
 import axios from 'axios';
 
@@ -19,7 +19,8 @@ class App extends Component {
          , filterText: ''
          , selectedResource: null
          , newResource: false
-         , editResource: false
+         , editResource: false 
+         , showResourceModal: false
      };   
     }
     
@@ -31,7 +32,7 @@ class App extends Component {
     }
 
     resourceSelected(resource) {
-        this.setState({selectedResource: resource});
+        this.setState({selectedResource: resource, showResourceModal: true});
     }
 
     removeResource(id) {
@@ -42,7 +43,8 @@ class App extends Component {
         .then((response)=>{
             this.setState((prevState)=>({
                 resources: prevState.resources.filter((resource)=>resource.id !== response.data),
-                selectedResource: null
+                selectedResource: null,
+                showResourceModal: false
             }));
         })
         .catch(e => {console.log(e);})
@@ -58,7 +60,6 @@ class App extends Component {
     }
 
     saveResource(obj) {
-        console.log("This is from save resource: " + JSON.stringify(obj));
         axios.post('/api/resource/', obj)
         .then((response)=>{
             obj.id = response.data._id
@@ -78,23 +79,37 @@ class App extends Component {
             <div className="container">
             <Jumbotron 
                 onInputChange={(text)=>{this.setState({filterText: text.toLowerCase()});}} 
-                onAddClick={()=>{this.setState({newResource: true})}}/>
-            <NewResource 
-                add={this.state.newResource} 
-                onCancel={()=>{this.setState({newResource: false})}}
-                onSave={(newResource)=>this.saveResource(newResource)}/>
+                onAddClick={()=>{this.setState({
+                                    showAddModal: true,
+                                    newResource: true
+                                    })
+                                }} />
+
+            <Modal show={this.state.showAddModal} 
+                   onHide={()=>this.setState({showAddModal:false})}>
+                   <NewResource 
+                    add={this.state.newResource} 
+                    onCancel={()=>{this.setState({newResource: false, showAddModal: false})}}
+                    onSave={(newResource)=>this.saveResource(newResource)}/>
+            </Modal>
+            
+            <Modal show={this.state.editResource}>
             <EditResource
                 edit={this.state.editResource}
                 resource={this.state.selectedResource}
                 onCancel={()=>{this.setState({editResource: false})}}
                 onSave={(res)=>this.editResource(res)} />
-            <ResourceDetail 
+            </Modal>
+            <ResourceList 
+                onResourceSelect={this.resourceSelected.bind(this)} resources={this.state.resources.filter((resource)=> this.state.filterText === '' || resource.name.toLowerCase().includes(this.state.filterText) || resource.author.toLowerCase().includes(this.state.filterText))}/> 
+            <Modal show={this.state.showResourceModal}
+                   onHide={()=>this.setState({showResourceModal:false})}>
+                   <ResourceDetail 
                 resource={this.state.selectedResource} 
                 deleteResource={(id)=> this.removeResource(id)}
                 onEditClick={() => {this.setState({editResource: true})}}
                 editResource = {(id) => this.editResource(id)} />
-            <ResourceList 
-                onResourceSelect={this.resourceSelected.bind(this)} resources={this.state.resources.filter((resource)=> this.state.filterText === '' || resource.name.toLowerCase().includes(this.state.filterText) || resource.author.toLowerCase().includes(this.state.filterText))}/> 
+            </Modal>
             </div> 
         );
     }

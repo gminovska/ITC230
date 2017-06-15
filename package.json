@@ -39,6 +39,7 @@
     "express-handlebars": "^3.0.0",
     "mongoose": "^4.9.9",
     "react": "^15.5.4",
+    "react-bootstrap": "^0.31.0",
     "react-dom": "^15.5.4",
     "webpack": "^2.6.1"
   },
