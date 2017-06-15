@@ -11,7 +11,6 @@ class Jumbtron extends Component {
                     <div className="col col-sm-8 col-sm-offset-2 text-center form-group">
                         <ResourceSearch onSearch={this.props.onInputChange}/>
                     </div>
-                    <hr />
                     <div className="col col-sm-8 col-sm-offset-2 text-center form-group">
                         <p><input type="button" className="btn btn-lg btn-primary" value="Add New" 
                         onClick={this.props.onAddClick}/></p>

@@ -1,0 +1,27 @@
+/*Pinterest- style images with bootsrap found at: https://codepen.io/annahansen/pen/GoyKdw*/
+.resource_row {
+	/* column width */
+	-moz-column-width: 19em;
+	-webkit-column-width: 19em;
+	
+	/* space between columns */
+	-moz-column-gap: 1em;
+	-webkit-column-gap: 1em;
+}
+
+.item {
+	display: inline-block;
+	width: 100%;
+}
+
+/*My Styles*/
+
+.resource_image {
+    min-width: 100%;
+	max-width: 100%;
+    margin-bottom: 10px;
+}
+
+.search {
+  text-align: right;
+}

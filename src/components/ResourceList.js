@@ -1,6 +1,6 @@
 //this component should display a list of resources that are in the database.
 import React from 'react';
-
+import { Image } from 'react-bootstrap';
 const ResourceList = (props) => {
     // const itemSelected = (id) => { onResourceSelect(id) };
     function itemSelected(resource) {
@@ -11,7 +11,7 @@ const ResourceList = (props) => {
             {props.resources.map((resource)=>
                 <div onClick={() => { itemSelected(resource);}} className="item well" key={resource.id}>
                     <h3>{resource.name}</h3>
-                    <img className="resource_image" src={ resource.image } alt="Resource image" />
+                    <Image className="resource_image" src={ resource.image } alt="Resource image" />
                 </div>
             )}
         </div>
