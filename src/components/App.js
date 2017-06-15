@@ -61,9 +61,11 @@ class App extends Component {
         console.log("This is from save resource: " + JSON.stringify(obj));
         axios.post('/api/resource/', obj)
         .then((response)=>{
+            obj.id = response.data._id
             this.setState((prevState)=>({
                 resources: [...prevState.resources, obj],
-                newResource: false
+                newResource: false,
+                showAddModal: false,
             }));
         })
         .catch((e)=>console.log(e));

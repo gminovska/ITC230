@@ -93,7 +93,7 @@ app.post('/api/resource/', (req, res) => {
         if (err) {
             res.status(500).send("There was an error adding a resource");
         } else {
-            res.send("Resource successfully added");
+            res.send(result);
         }
     });
 });
